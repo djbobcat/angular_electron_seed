@@ -10,9 +10,7 @@ module.exports = {
     'angular2': [
       'rxjs',
       'reflect-metadata',
-      'angular2/core',
-      'angular2/router',
-      'angular2/http'
+      '@angular/core'
     ],
     'app': './app/app'
   },
@@ -42,5 +40,6 @@ module.exports = {
   plugins: [
     new CommonsChunkPlugin({ name: 'angular2', filename: 'angular2.js', minChunks: Infinity }),
     new CommonsChunkPlugin({ name: 'common',   filename: 'common.js' })
-  ]
+  ],
+  target:'node-webkit'
 };
