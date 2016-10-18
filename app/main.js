@@ -1,4 +1,6 @@
 const electron = require('electron');
+const fileReader = require('./fileReader');
+
 // Module to control application life.
 const {app} = electron;
 // Module to create native browser window.
@@ -11,6 +13,13 @@ let win;
 function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({width: 1200, height: 900});
+
+  //read in csv file
+  var filepath = '/Users/jesseelfalan/Desktop/clinics_csv/r1_clinics.csv';
+  //fileReader.readFile(filepath);
+  fileReader.csvReadStream(filepath);
+
+
 
   // and load the index.html of the app.
   win.loadURL(`file://${__dirname}/index.html`);
