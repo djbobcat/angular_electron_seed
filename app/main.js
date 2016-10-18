@@ -17,8 +17,20 @@ function createWindow() {
   //read in csv file
   var filepath = '/Users/jesseelfalan/Desktop/clinics_csv/r1_clinics.csv';
   //fileReader.readFile(filepath);
-  fileReader.csvReadStream(filepath);
+  //fileReader.csvReadStream(filepath);
 
+  if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./scratch');
+  }
+
+  var key = "testkey";
+  if((localStorage.getItem(key) === "undefined")||(localStorage.getItem(key) === null)){
+    console.log("key was null, setting key: " + key);
+      localStorage.setItem(key, 'myFirstValue');
+  }else{
+    console.log("from storage: " + localStorage.getItem(key));    
+  }
 
 
   // and load the index.html of the app.
