@@ -1,6 +1,10 @@
 const electron = require('electron');
 const fileReader = require('./fileReader');
 
+
+var filepath = '/Users/jesseelfalan/Desktop/Electron_Apps/app_data/clinics_csv/r1_clinics.csv';
+var dbpath = '/Users/jesseelfalan/Desktop/Electron_Apps/app_data/database/test.db';
+
 // Module to control application life.
 const {app} = electron;
 // Module to create native browser window.
@@ -15,9 +19,22 @@ function createWindow() {
   win = new BrowserWindow({width: 1200, height: 900});
 
   //read in csv file
-  var filepath = '/Users/jesseelfalan/Desktop/clinics_csv/r1_clinics.csv';
   //fileReader.readFile(filepath);
   fileReader.csvReadStream(filepath);
+
+//setup database
+var Datastore = require('nedb')
+  , db = new Datastore({ filename: dbpath });
+db.loadDatabase(function (err) {    // Callback is optional
+  // Now commands will be executed
+
+});
+
+db.insert([{ b:105 }, { c: 243 }], function (err, newDocs) {
+// Two documents were inserted in the database
+// newDocs is an array with these documents, augmented with their _id
+});
+
 
 
 
